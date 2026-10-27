@@ -22,7 +22,7 @@ jobs:
       uses: gradle/actions/setup-gradle@v3
 
     - name: Build with Gradle
-      run: gradle assembleDebug
+      run: gradle wrapper --gradle-version 8.5 && ./gradlew assembleDebug
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
