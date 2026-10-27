@@ -3,100 +3,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="24dp"
-    android:gravity="center_horizontal">
+    android:padding="24dp">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="🚗 BYD 行程電費計算器"
-        android:textSize="26sp"
+        android:text="車載行程與電費自動計算"
+        android:textSize="20sp"
         android:textStyle="bold"
-        android:layout_marginBottom="20dp" />
+        android:layout_marginBottom="24dp"/>
 
-    <!-- 充電價格 -->
-    <com.google.android.material.textfield.TextInputLayout
+    <!-- 每度電價格輸入 -->
+    <EditText
+        android:id="@+xml/et_price"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="一度電充電價格 ($ / kWh)"
-        android:layout_marginBottom="12dp">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etElectricityPrice"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
-            android:text="1.8"
-            android:textSize="18sp" />
-    </com.google.android.material.textfield.TextInputLayout>
+        android:hint="請輸入每度電價格 (例如: 1.5)"
+        android:inputType="numberDecimal"
+        android:layout_marginBottom="16dp"/>
 
-    <!-- 行駛里數 -->
-    <com.google.android.material.textfield.TextInputLayout
+    <!-- 控制按鈕 -->
+    <Button
+        android:id="@+id/btn_start_trip"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="本次行程里數 (km)"
-        android:layout_marginBottom="12dp">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etDistance"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
-            android:textSize="18sp" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <!-- 消耗電量 -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="消耗電量 (kWh)"
-        android:layout_marginBottom="16dp">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etEnergy"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
-            android:textSize="18sp" />
-    </com.google.android.material.textfield.TextInputLayout>
+        android:text="開始行程（記錄起點）"
+        android:layout_marginBottom="12dp"/>
 
     <Button
-        android:id="@+id/btnCalculate"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:text="立即計算"
-        android:textSize="20sp"
-        android:layout_marginBottom="20dp" />
-
-    <!-- 結果顯示面板 -->
-    <LinearLayout
+        android:id="@+id/btn_end_trip"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="#F5F5F5"
-        android:padding="16dp">
+        android:text="結束行程並計算"
+        android:layout_marginBottom="24dp"/>
 
-        <TextView
-            android:id="@+id/tvCostPerKm"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="每公里電費: $ -- / km"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:textColor="#2E7D32"
-            android:layout_marginBottom="8dp" />
-
-        <TextView
-            android:id="@+id/tvTotalCost"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="本次行程總電費: $ --"
-            android:textSize="18sp"
-            android:layout_marginBottom="6dp" />
-
-        <TextView
-            android:id="@+id/tvAvgConsumption"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="平均電耗: -- kWh / 100km"
-            android:textSize="18sp" />
-    </LinearLayout>
+    <!-- 結果顯示區 -->
+    <TextView
+        android:id="@+id/tv_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="狀態：尚未開始行程"
+        android:textSize="16sp"
+        android:lineSpacingExtra="8dp"/>
 
 </LinearLayout>
