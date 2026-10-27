@@ -18,6 +18,7 @@ jobs:
         java-version: '17'
 
     - name: Build with Gradle
+      working-directory: ./byd-ev-trip-calculator
       run: ./gradlew assembleDebug
 
     - name: Upload APK
