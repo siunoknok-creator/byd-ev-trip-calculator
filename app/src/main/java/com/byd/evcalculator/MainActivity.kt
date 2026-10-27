@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
         etPrice = findViewById(R.id.etElectricityPrice)
         etDistance = findViewById(R.id.etDistance)
-        etEnergy = findViewById(R.id.etEnergyUsed)
+        etEnergy = findViewById(R.id.etEnergy) // 修正這裡的 ID 與 XML 對齊
         tvCostPerKm = findViewById(R.id.tvCostPerKm)
         tvTotalCost = findViewById(R.id.tvTotalCost)
         tvAvgConsumption = findViewById(R.id.tvAvgConsumption)
