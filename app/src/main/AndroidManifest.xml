@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.byd.evcalculator">
 
+    <!-- 車載硬體與數據讀取權限 -->
+    <uses-permission android:name="android.car.permission.CAR_MILEAGE" />
+    <uses-permission android:name="android.car.permission.CAR_ENERGY" />
+    <uses-permission android:name="android.car.permission.CONTROL_CAR_CLIMATE" />
+
     <application
         android:allowBackup="true"
         android:label="行車電費計算"
