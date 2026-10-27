@@ -18,9 +18,9 @@ jobs:
         distribution: 'temurin'
         java-version: '17'
 
-    - name: Build with Gradle wrapper
+    - name: Build with specific Gradle version
       run: |
-        gradle wrapper
+        gradle wrapper --gradle-version 8.0
         chmod +x gradlew
         ./gradlew assembleDebug
 
