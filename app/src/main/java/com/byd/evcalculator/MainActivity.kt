@@ -1,8 +1,6 @@
 package com.byd.evcalculator
 
-import android.car.Car
-import android.car.hardware.CarPropertyValue
-import android.car.hardware.property.CarPropertyManager
+import android.content.Context
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -18,9 +16,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tvCostPerKm: TextView
     private lateinit var tvTotalCost: TextView
     private lateinit var tvAvgConsumption: TextView
-
-    private var car: Car? = null
-    private var carPropertyManager: CarPropertyManager? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,18 +33,25 @@ class MainActivity : AppCompatActivity() {
             calculateCost()
         }
 
-        // 初始化車載 API 連線
-        initCarApi()
+        // 嘗試以動態反射讀取車載數據 (避免編譯期缺失 android.car 庫)
+        initCarDataByReflection()
     }
 
-    private fun initCarApi() {
+    private fun initCarDataByReflection() {
         try {
-            car = Car.createCar(this)
-            carPropertyManager = car?.getCarManager(Car.PROPERTY_SERVICE) as? CarPropertyManager
-            
-            // 嘗試自動讀取當前車輛總里數 (Odometer) 作為初始參考
-            // 註：實際車型 Property ID 可能因 DiLink 版本微調，若抓取不到會保持手動輸入框開放
+            // 動態載入 Car 類別
+            val carClass = Class.forName("android.car.Car")
+            val createCarMethod = carClass.getMethod("createCar", Context::class.java)
+            val carInstance = createCarMethod.invoke(null, this)
+
+            if (carInstance != null) {
+                val getCarManagerMethod = carClass.getMethod("getCarManager", String::class.java)
+                val carPropertyManager = getCarManagerMethod.invoke(carInstance, "property")
+                
+                // 成功連接到車機系統底層 CarPropertyManager
+            }
         } catch (e: Exception) {
+            // 若非車機環境或權限限制，保持輸入欄供手動調整
             e.printStackTrace()
         }
     }
@@ -67,15 +69,6 @@ class MainActivity : AppCompatActivity() {
             tvCostPerKm.text = String.format(Locale.getDefault(), "每公里電費: $%.2f / km", costPerKm)
             tvTotalCost.text = String.format(Locale.getDefault(), "本次行程總電費: $%.2f", totalCost)
             tvAvgConsumption.text = String.format(Locale.getDefault(), "平均電耗: %.2f kWh / 100km", avgConsumption)
-        }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        try {
-            car?.disconnect()
-        } catch (e: Exception) {
-            e.printStackTrace()
         }
     }
 }
