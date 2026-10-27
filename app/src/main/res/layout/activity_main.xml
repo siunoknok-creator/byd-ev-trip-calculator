@@ -15,35 +15,60 @@
 
     <!-- 每度電價格輸入 -->
     <EditText
-        android:id="@+id/et_price"
+        android:id="@+id/etElectricityPrice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="請輸入每度電價格 (例如: 1.5)"
         android:inputType="numberDecimal"
         android:layout_marginBottom="16dp"/>
 
-    <!-- 控制按鈕 -->
-    <Button
-        android:id="@+id/btn_start_trip"
+    <!-- 距離與電量輸入 (若需手動微調) -->
+    <EditText
+        android:id="@+id/etDistance"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="開始行程（記錄起點）"
+        android:hint="行駛里數 (km)"
+        android:inputType="numberDecimal"
         android:layout_marginBottom="12dp"/>
 
-    <Button
-        android:id="@+id/btn_end_trip"
+    <EditText
+        android:id="@+id/etEnergy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="結束行程並計算"
+        android:hint="消耗電量 (kWh)"
+        android:inputType="numberDecimal"
+        android:layout_marginBottom="20dp"/>
+
+    <!-- 計算按鈕 -->
+    <Button
+        android:id="@+id/btnCalculate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="立即計算費用"
         android:layout_marginBottom="24dp"/>
 
     <!-- 結果顯示區 -->
     <TextView
-        android:id="@+id/tv_result"
+        android:id="@+id/tvTotalCost"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="狀態：尚未開始行程"
+        android:text="總充電費：$0.00"
         android:textSize="16sp"
-        android:lineSpacingExtra="8dp"/>
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/tvCostPerKm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="每公里電費：$0.00"
+        android:textSize="16sp"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/tvAvgConsumption"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        text="平均能耗：0.0 kWh/km"
+        android:textSize="16sp"/>
 
 </LinearLayout>
