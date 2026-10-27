@@ -15,7 +15,7 @@
 
     <!-- 每度電價格輸入 -->
     <EditText
-        android:id="@+xml/et_price"
+        android:id="@+id/et_price"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="請輸入每度電價格 (例如: 1.5)"
