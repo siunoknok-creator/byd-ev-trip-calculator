@@ -13,13 +13,15 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Set up JDK 17
-      uses: actions/setup-java@v4
+      uses: actions/setup-java@v5
       with:
         distribution: 'temurin'
         java-version: '17'
 
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@v3
+
     - name: Build with Gradle
-      working-directory: ./byd-ev-trip-calculator
       run: gradle assembleDebug
 
     - name: Upload APK
